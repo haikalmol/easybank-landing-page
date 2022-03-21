@@ -1,0 +1,68 @@
+@use '../utilities/' as *;
+
+.btn {
+    $root: &;
+    display: flex;
+    color: $c-white;
+    cursor: pointer;
+
+    &--gradient {
+        @extend .btn;
+        position: relative;
+        padding: 13px 32px;
+        background-image: linear-gradient(to right, $c-green-lime, $c-cyan);
+        border-radius: 24px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        overflow: hidden;
+        transition: padding 250ms ease-in-out;
+
+        /* Background for hover */
+        &::after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: opacity 500ms ease-in;
+            opacity: 0;
+            background: transparentize($c-white, 0.7);
+        }
+
+        /* Shine effect for hover */
+        &::before {
+            position: absolute;
+            content: '';
+            top: -50px;
+            left: -75px;
+            width: 50px;
+            height: 155px;
+            background: $c-white;
+            transform: rotate(35deg);
+            opacity: 0.2;
+            transition: left 550ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        @include breakpoint('md') {
+            &:hover {
+                &::after {
+                    opacity: 1;
+                }
+
+                &::before {
+                    left: 120%;
+                    transition: left 550ms cubic-bezier(0.19, 1, 0.22, 1);
+                }
+            }
+        }
+
+        @include breakpoint('md') {
+            padding: 13px 25px;
+        }
+        
+        @include breakpoint('lg') {
+            padding: 13px 32px;
+        }
+    }
+}

@@ -1,0 +1,110 @@
+@use '../utilities/' as *;
+
+.kv {
+    $root: &;
+    background-color: $c-gray-light;
+    padding-bottom: 88px;
+    overflow: hidden;
+
+    @include breakpoint('md') {
+        padding: 0 24px;
+    }
+
+    &__container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        padding: 0 16px;
+
+        // Container background
+        &::before {
+            position: absolute;
+            content: '';
+            top: -17vw;
+            left: 0;
+            width: 100%;
+            height: 100vw;
+            background-image: url('../img/bg-intro-mobile.svg');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            animation: kv-container-opacity 1000ms ease-in-out forwards;
+
+            @include breakpoint('md') {
+                background-image: url("../img/bg-intro-desktop.svg");
+                background-size: 111%;
+                right: -42%;
+                top: -30%;
+                height: 113%;
+                left: unset;
+            }
+        }
+
+        @include breakpoint('md') {
+            flex-flow: row;
+            align-items: flex-start;
+            padding: 0;
+        }
+    }
+
+    &__mockup {
+        position: relative;
+        z-index: 2;
+        
+        @include breakpoint('md') {
+            order: 1;
+            flex: 55%;
+        }
+    }
+
+    &__mockup-img {
+        width: 100%;
+        margin-top: -36%;
+        animation: kv-mockup-slide 1s ease-in-out forwards;
+        
+        @include breakpoint('md') {
+            margin-top: -19%;
+            width: 120%;
+            max-width: 767px;
+            transform: translateX(22%);
+            animation: kv-mockup-slide-desktop 1s ease-in-out forwards;
+        }
+    }
+
+    &__intro {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 25px;
+        max-width: 500px;
+        animation: kv-intro-slide 1s ease-in-out forwards;
+
+        @include breakpoint('md') {
+            order: 0;
+            align-items: flex-start;
+            text-align: left;
+            flex: 40%;
+            transform: translateY(47%);
+            animation: kv-intro-slide-desktop 1s ease-in-out forwards;
+        }
+    }
+
+    &__intro-text {
+        margin-top: 16px;
+
+        @include breakpoint('lg') {
+            margin-top: 20px;
+            max-width: 440px;
+        }
+    }
+
+    &__intro-cta {
+        margin-top: 32px;
+
+        @include breakpoint('lg') {
+            margin-top: 34px;
+        }
+    }
+}

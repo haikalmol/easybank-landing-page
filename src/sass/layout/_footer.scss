@@ -1,0 +1,170 @@
+@use '../utilities/' as *;
+
+.footer {
+    $root: &;
+
+    background-color: $c-blue-dark;
+    padding: 41px 24px;
+
+    @include breakpoint('md') {
+        padding: 46px 24px;
+    }
+
+    &__container {
+        display: grid;
+        justify-content: center;
+        gap: 31px 0;
+
+        @include breakpoint('md') {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-areas: 
+            "logo nav cta"
+            "socials nav copy";
+        }
+        
+        @include breakpoint('lg') {
+            grid-template-columns: 1fr 1.5fr 1.4fr;
+        }
+    }
+
+    &__logo {
+        display: flex;
+        justify-content: center;
+
+        @include breakpoint('md') {
+            grid-area: logo;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+    }
+
+    &__socials {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        font-size: 1.4rem;
+
+        @include breakpoint('md') {
+            grid-area: socials;  
+            justify-content: flex-start;
+            align-items: flex-start; 
+            font-size: 1rem;
+        }
+    }
+
+    &__socials-link {
+        &:focus {
+            outline: none;
+        }
+
+        &:focus-visible {
+            animation: socialRotate 300ms ease-in-out forwards;
+
+            i::before {
+                animation: socialIconColor 300ms ease-in-out forwards;
+            }
+        }
+        
+        @include breakpoint('md') {
+            &:hover {
+                animation: socialRotate 300ms ease-in-out forwards;
+    
+                i::before {
+                    animation: socialIconColor 300ms ease-in-out forwards;
+                }
+            }
+        }
+    }
+
+    &__nav {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        text-align: center;
+        gap: 19px;
+
+        @include breakpoint('md') {
+            grid-area: nav;
+            flex-flow: row;
+            text-align: left;
+            gap: 70px;
+        }
+
+        @include breakpoint('lg') {
+            gap: 129px;
+        }
+    }
+
+    &__nav-list {
+        list-style: none;
+        display: flex;
+        flex-flow: column;
+        gap: 16px;
+    }
+
+    &__nav-item {
+        font-size: 0.805rem;
+        
+        @include breakpoint('md') {            
+            &:hover {
+                #{$root}__nav-link {
+                    color: $c-green-lime;
+                }                
+
+                #{$root}__nav-link::before {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    
+    &__nav-link {
+        position: relative; 
+        color: $c-white;
+        transition: color 300ms ease-in;
+        
+        &:focus {
+            outline: none;
+        }
+
+        &:focus-visible {
+            color: $c-green-lime;
+
+            &::before {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        &::before {
+            position: absolute;
+            content: '';
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: $c-green-lime;
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 350ms ease-in-out,
+                        opacity 300ms ease-in-out;
+        }
+    }
+
+    &__cta {
+        justify-self: center;
+
+        @include breakpoint('md') {
+            grid-area: cta;
+            justify-self: end;
+        }
+    }
+
+    &__copy {
+        @include breakpoint('md') {
+            grid-area: copy;
+            justify-self: end;
+        }
+    }
+}

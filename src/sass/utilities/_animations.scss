@@ -1,0 +1,129 @@
+@use '../utilities/variables' as *;
+
+/* Header */
+@keyframes scroll-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-64px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scroll-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-64px);
+    }
+}
+
+/* Navigation */
+@keyframes nav-in {
+    0% {
+        visibility: visible;
+        transform: translateX(-150%);
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+}
+@keyframes nav-out {
+    0% {
+        visibility: visible;
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+    100% {
+        visibility: visible;
+        transform: translateX(150%);
+        opacity: 0;
+    }
+}
+
+/* Key Visual */
+@keyframes kv-container-opacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes kv-mockup-slide {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes kv-mockup-slide-desktop {
+    0% {
+        opacity: 0;
+        transform: translateX(22%) translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(22%) translateY(0);
+    }
+}
+
+@keyframes kv-intro-slide {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes kv-intro-slide-desktop {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px) translateY(47%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(47%);
+    }
+}
+
+/* Footer */
+@keyframes socialRotate {
+    0% {
+        transform: rotate(0);
+    }
+    40% {
+        transform: rotate(20deg);
+    }
+
+    80% {
+        transform: rotate(-20deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+@keyframes socialIconColor {
+    0% {
+        color: $c-white;
+    }
+    100% {
+        color: $c-green-lime;
+    }
+}

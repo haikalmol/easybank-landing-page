@@ -1,0 +1,47 @@
+@use '../utilities' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
+
+html {
+    font-size: 18px;
+}
+
+body {
+    min-height: 100vh;
+    font-family: $ff-primary;
+
+    &.header-scroll-in {
+        position: relative;
+        top: 64px; /* header height */
+
+        @include breakpoint('md') {
+            top: 79px;
+        }
+    }
+}
+
+// Anchor elements
+a {
+    text-decoration: none;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: 3px dashed $c-green-lime;
+        outline-offset: 4px;
+    }
+}
+
+// Button elements
+button {
+    &:focus {
+        outline: none;
+    }
+
+    &:focus-visible {
+        outline: 3px dashed $c-green-lime;
+        outline-offset: 4px;
+    } 
+}

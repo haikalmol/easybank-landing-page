@@ -1,0 +1,96 @@
+@use '../utilities/' as *;
+
+.about {
+    $root: &;
+
+    position: relative;
+    background-color: $c-blue-grayish-light;
+    padding: 61px 24px 61px 24px;
+    z-index: 1;
+
+    @include breakpoint('md') {
+        padding: 81px 24px 61px 24px;
+        margin-top: -60px;
+    }
+
+    @include breakpoint('lg') {
+        padding: 105px 24px 101px 24px;
+        margin-top: -163px;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+
+        @include breakpoint('lg') {
+            align-items: flex-start;
+        }
+    }
+
+    &__info {
+        text-align: center;
+        max-width: 440px;
+
+        @include breakpoint('lg') {
+            text-align: left;
+            max-width: 625px;
+        }
+    }
+
+    &__info-text {
+        margin-top: 17px;
+
+        @include breakpoint('lg') {
+            margin-top: 24px;
+        }
+    }
+
+    &__features {
+        display: flex;
+        flex-flow: wrap;
+        gap: 31px;
+        margin-top: 55px;
+        text-align: center;
+        justify-content: center;
+
+        @include breakpoint('lg') {
+            text-align: left;
+            justify-content: space-between;
+            margin-top: 71px;
+            gap: 10px;
+        }
+    }
+
+    &__features-card {
+        flex-basis: 325px;
+
+        @include breakpoint('md') {
+            flex-basis: 345px;
+        }
+
+        @include breakpoint('lg') {
+            flex-basis: 220px;
+        }
+
+        @media (min-width: 1100px) {
+            flex-basis: 255px;
+        }
+    }
+
+    &__features-heading {
+        margin-top: 22px;
+
+        @include breakpoint('lg') {
+            margin-top: 37px;
+        }
+    }
+
+    &__features-text {
+        margin-top: 18px;
+
+        @include breakpoint('lg') {
+            margin-top: 23px;
+        }
+    }
+}

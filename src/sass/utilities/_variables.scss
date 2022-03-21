@@ -1,0 +1,19 @@
+/* Colors */
+$c-white: hsl(0, 0%, 100%);
+$c-black: hsl(0, 0%, 0%);
+$c-blue-grayish: hsl(233, 8%, 62%);
+$c-blue-grayish-light: hsl(220, 16%, 96%);
+$c-blue-dark: hsl(233, 26%, 24%);
+$c-green-lime: hsl(136, 65%, 51%);
+$c-cyan: hsl(192, 70%, 51%);
+$c-gray-light: hsl(0, 0%, 98%);
+
+/* Fonts */
+$ff-primary: 'Public Sans', sans-serif;
+
+/* Media query breakpoints */
+$breakpoints: (
+    'sm': 481px,
+    'md': 769px,
+    'lg': 1025px
+);

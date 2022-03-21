@@ -1,0 +1,248 @@
+@use '../utilities/' as *;
+
+.header {
+    $root: &;
+
+    position: relative;
+    padding: 22px 24px;
+    background-color: $c-white;
+    z-index: 20;
+
+    &.header-scroll-in {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        animation: scroll-in 300ms ease-in-out forwards;
+    }
+
+    &.header-scroll-out {
+        animation: scroll-out 300ms ease-in-out forwards;
+    }
+
+    @include breakpoint('md') {
+        padding: 18px 24px;
+    }
+
+    &__container {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo-img {
+        display: block;
+    }
+
+    &__nav {
+        &.menu-open {
+            #{$root}__nav-menu-bars {
+                transition-delay: 0.12s;
+                transition-timing-function: cubic-bezier(0.215,0.61,0.355,1);
+                transform: rotate(225deg);
+
+                &::before {
+                    top: 0;
+                    transition: top 0.1s ease-out,opacity 0.1s ease-out 0.12s;
+                    opacity: 0;
+                }
+    
+                &::after {
+                    bottom: 0;
+                    transition: bottom 0.1s ease-out,transform 0.22s cubic-bezier(0.215,0.61,0.355,1) 0.12s;
+                    transform: rotate(-90deg);
+                }
+            }
+        }
+
+        &.nav-open {
+            #{$root}__nav-list {
+                animation: nav-in 1s cubic-bezier(.68,-0.12,.53,1.14) forwards;
+                #{$root}__nav-item {
+                    @for $i from 1 through 5 {
+                        &:nth-child(#{$i}) {
+                            transform: translateX(0);
+                            transition: transform 800ms ease-in-out;
+                            transition-delay: 100ms * $i;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.nav-close {
+            #{$root}__nav-list {
+                animation: nav-out 1.3s cubic-bezier(.68,-0.12,.53,1.14) forwards;
+                #{$root}__nav-item {
+                    @for $i from 1 through 5 {
+                        &:nth-child(#{$i}) {
+                            transform: translateX(100px + (200px * $i));
+                            transition: transform 800ms ease-in-out;
+                            transition-delay: 100ms * $i;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__nav-menu {
+        position: relative;
+        display: flex;
+        width: 25px;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        @include breakpoint('md') {
+            display: none;
+        }
+    }
+
+    &__nav-menu-bars {
+        position: relative;
+        width: 25px;
+        height: 1px;
+        background-color: $c-black;
+        top: 50%;
+        border-radius: 10px;
+        transition-timing-function: cubic-bezier(0.55,0.055,0.675,0.19);
+        transition-duration: 0.22s;
+
+        &::before, &::after {
+            position: absolute;
+            content: '';
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $c-black;
+            transition-timing-function: ease;
+            transition-duration: 0.15s;
+            transition-property: transform;
+            border-radius: 10px;
+        }
+
+        &::before {
+            top: -6px;
+            transition: top 0.1s ease-in 0.25s,opacity 0.1s ease-in;
+        }
+
+        &::after {
+            bottom: -6px;
+            transition: bottom 0.1s ease-in 0.25s,transform 0.22s cubic-bezier(0.55,0.055,0.675,0.19);
+        }
+    }
+
+    &__nav-list {
+        position: absolute;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: 24px;
+        top: 66px;
+        left: 50%;
+        width: 100%;
+        padding: 32px;
+        background: $c-white;
+        list-style: none;
+        border-radius: 5px;
+        transform: translateX(-150%);
+        visibility: hidden;
+
+        @include breakpoint('md') {
+            position: unset;
+            flex-flow: row;
+            align-items: unset;
+            gap: 30.5px;
+            top: unset;
+            left: unset;
+            width: unset;
+            padding: 0;
+            background: unset;
+            border-radius: unset;
+            transform: translateX(0);
+            visibility: visible;
+            font-size: 0.77rem;
+        }
+
+        @include breakpoint('lg') {
+            margin-left: 24px;
+        }
+    }
+    
+    &__nav-item {
+        @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+                transform: translateX(-100px + (-200px * $i));
+            }
+        }
+
+        @include breakpoint('md') {
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+
+    &__nav-link {
+        position: relative;
+        color: $c-blue-dark;
+        text-decoration: none;
+
+        // Underline effect
+        &::before {
+            position: absolute;
+            content: '';
+            bottom: -10px;
+            left: 0;
+            background-image: linear-gradient(to right, $c-green-lime, $c-cyan);
+            width: 100%;
+            height: 4px;
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 300ms ease-in,
+                        opacity 300ms ease-in;
+        }
+
+        &:focus {
+            color: $c-blue-dark;
+            outline: none;
+
+            &::before {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        @include breakpoint('md') {
+            color: $c-blue-grayish;
+            transition: color 300ms ease-in;
+
+            // Underline lined with header height
+            &::before {
+                bottom: -31px;
+            }
+
+            &:hover {
+                color: $c-blue-dark;
+
+                &::before {
+                    transform: scaleX(1);
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &__cta {
+        display: none;
+
+        @include breakpoint('md') {
+            display: flex;
+        }
+    }
+}

@@ -1,0 +1,96 @@
+@use '../utilities/' as *;
+
+.articles {
+    $root: &;
+    background-color: $c-gray-light;
+    padding: 93px 24px 111px 24px;
+
+    @include breakpoint('lg') {
+        padding: 93px 24px 80px 24px;
+    }
+    
+    &__heading {
+        text-align: center;
+
+        @include breakpoint('lg') {
+            text-align: left;
+        }
+    }
+
+    &__cards {
+        display: flex;
+        flex-flow: wrap;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 32px;
+
+        @include breakpoint('lg') {
+            justify-content: space-between;
+            margin-top: 47px;
+        }
+    }
+
+    &__card {
+        flex-basis: 520px;
+        background-color: $c-white;
+        border-radius: 6px;
+        overflow: hidden;
+
+        @include breakpoint('md') {
+            flex-basis: clamp(348px, 45vw, 470px);
+            transition: transform 350ms ease-in-out,
+                        opacity 300ms ease-in;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+
+            &.hover {
+                opacity: 0.4;
+            }
+        }
+
+        @include breakpoint('lg') {
+            flex-basis: clamp(221px, 22vw, 255px);
+        }
+    }
+
+    &__card-preview {
+        height: 200px;
+    }
+
+    &__card-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__card-info {
+        padding: 21px 31px 39px 31px;
+
+        @include breakpoint('lg') {
+            padding: 21px 24px 26px 24px;
+        }
+    }
+
+    &__card-heading {
+        margin-top: 7px;
+        
+        @include breakpoint('md') {
+            transition: color 350ms ease-in-out;
+            &:hover {
+                color: $c-green-lime;
+            }
+        }
+    }
+
+    &__card-link {
+        display: block;
+        color: inherit;
+    }
+
+    &__card-text {
+        margin-top: 7px;
+    }
+}
